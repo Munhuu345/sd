@@ -1,0 +1,18 @@
+name: Multi-Trigger Workflow
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 0 * * *'  # Runs daily at midnight (UTC)
+
+jobs:
+  log-info:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Log trigger type
+        run: echo "Workflow triggered by: ${{ github.event_name }}"
+
+      - name: Log current timestamp
+        run: echo "Current time: $(date)"
